@@ -1,9 +1,7 @@
 <?php
-// payments/report.php
 include '../../includes/header.php';
 include '../../includes/config.php';
 
-// Fetch all payments with related information
 $query = "
     SELECT 
         p.id AS payment_id,
@@ -56,19 +54,19 @@ try {
             </thead>
             <tbody>
                 <?php foreach ($payments as $payment): ?>
-                <tr>
-                    <td data-payment_id="<?= $payment['payment_id'] ?>"><?= $payment['payment_id'] ?></td>
-                    <td data-booking_id="<?= $payment['booking_id'] ?>"><?= $payment['booking_id'] ?></td>
-                    <td data-customer="<?= htmlspecialchars($payment['customer_name']) ?>">
-                        <?= htmlspecialchars($payment['customer_name']) ?>
-                    </td>
-                    <td data-amount="<?= $payment['amount'] ?>" class="amount-column">
-                        $<?= number_format($payment['amount'], 2) ?>
-                    </td>
-                    <td data-date="<?= $payment['payment_date'] ?>">
-                        <?= date('M d, Y H:i', strtotime($payment['payment_date'])) ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td data-payment_id="<?= $payment['payment_id'] ?>"><?= $payment['payment_id'] ?></td>
+                        <td data-booking_id="<?= $payment['booking_id'] ?>"><?= $payment['booking_id'] ?></td>
+                        <td data-customer="<?= htmlspecialchars($payment['customer_name']) ?>">
+                            <?= htmlspecialchars($payment['customer_name']) ?>
+                        </td>
+                        <td data-amount="<?= $payment['amount'] ?>" class="amount-column">
+                            $<?= number_format($payment['amount'], 2) ?>
+                        </td>
+                        <td data-date="<?= $payment['payment_date'] ?>">
+                            <?= date('M d, Y H:i', strtotime($payment['payment_date'])) ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

@@ -20,54 +20,66 @@ $customers = $pdo->query("SELECT id, name FROM customers")->fetchAll();
 $vehicles = $pdo->query("SELECT id, name, daily_price FROM vehicles WHERE availability = 1")->fetchAll();
 ?>
 
-<h2>Create Booking</h2>
-<form method="POST">
-    <label>Customer</label>
-    <select name="customer_id" required>
-        <?php foreach ($customers as $customer): ?>
-        <option value="<?= $customer['id'] ?>"><?= $customer['name'] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <label>Vehicle</label>
-    <select name="vehicle_id" required>
-        <?php foreach ($vehicles as $vehicle): ?>
-        <option value="<?= $vehicle['id'] ?>" data-price="<?= $vehicle['daily_price'] ?>">
-            <?= $vehicle['name'] ?> - $<?= $vehicle['daily_price'] ?>/day
-        </option>
-        <?php endforeach; ?>
-    </select>
-    <label>Start Date</label>
-    <input type="date" name="start_date" required>
-    <label>End Date</label>
-    <input type="date" name="end_date" required>
-    <label>Total Amount</label>
-    <input type="number" name="total_amount" readonly required>
-    <button type="submit">Create Booking</button>
-</form>
+<link rel="stylesheet" href="/assets/css/booking-create.css">
 
-<script>
-    const vehicleSelect = document.querySelector('[name="vehicle_id"]');
-    const startDateInput = document.querySelector('[name="start_date"]');
-    const endDateInput = document.querySelector('[name="end_date"]');
-    const totalAmountInput = document.querySelector('[name="total_amount"]');
+<div class="booking-container">
+    <div class="booking-header">
+        <h2>Create Booking</h2>
+    </div>
 
-    function calculateTotalAmount() {
-        const vehicleOption = vehicleSelect.options[vehicleSelect.selectedIndex];
-        const pricePerDay = parseFloat(vehicleOption.getAttribute('data-price'));
-        const startDate = new Date(startDateInput.value);
-        const endDate = new Date(endDateInput.value);
+    <div class="error-message"></div>
 
-        if (pricePerDay && startDate && endDate && startDate <= endDate) {
-            const days = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
-            totalAmountInput.value = (pricePerDay * days).toFixed(2);
-        } else {
-            totalAmountInput.value = '';
-        }
-    }
+    <form method="POST" class="booking-form">
+        <div class="form-group">
+            <label for="customer_id">Customer</label>
+            <select id="customer_id" name="customer_id" required>
+                <option value="">Select a customer</option>
+                <?php foreach ($customers as $customer): ?>
+                    <option value="<?= htmlspecialchars($customer['id']) ?>">
+                        <?= htmlspecialchars($customer['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
-    vehicleSelect.addEventListener('change', calculateTotalAmount);
-    startDateInput.addEventListener('change', calculateTotalAmount);
-    endDateInput.addEventListener('change', calculateTotalAmount);
-</script>
+        <div class="form-group">
+            <label for="vehicle_id">Vehicle</label>
+            <select id="vehicle_id" name="vehicle_id" required>
+                <option value="">Select a vehicle</option>
+                <?php foreach ($vehicles as $vehicle): ?>
+                    <option value="<?= htmlspecialchars($vehicle['id']) ?>" 
+                            data-price="<?= htmlspecialchars($vehicle['daily_price']) ?>">
+                        <?= htmlspecialchars($vehicle['name']) ?> - 
+                        $<?= number_format($vehicle['daily_price'], 2) ?>/day
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="dates-container">
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+        </div>
+
+        <div class="form-group amount-container">
+            <label for="total_amount">Total Amount</label>
+            <input type="number" id="total_amount" name="total_amount" 
+                   readonly required step="0.01">
+        </div>
+
+        <button type="submit" class="submit-button">
+            Create Booking
+        </button>
+    </form>
+</div>
+
+<script src="/assets/js/booking-create.js"></script>
 
 <?php include '../../includes/footer.php'; ?>

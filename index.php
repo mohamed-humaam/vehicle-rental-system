@@ -2,13 +2,11 @@
 <link rel="stylesheet" href="/assets/css/index.css">
 <script src="/assets/js/index.js" defer></script>
 
-<!-- Hero Section -->
 <section class="hero">
     <h2>Welcome to the Vehicle Rental System</h2>
     <p>Experience seamless vehicle management and booking with our advanced rental solution</p>
 </section>
 
-<!-- Features Section -->
 <section class="features">
     <div class="feature-card">
         <i class="fas fa-car"></i>
@@ -32,7 +30,6 @@
     </div>
 </section>
 
-<!-- Stats Section -->
 <section class="stats">
     <div class="stat-item">
         <div class="number" data-target="150">0</div>

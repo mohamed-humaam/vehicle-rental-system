@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Previous head content remains the same -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
         .container {
             position: relative;
             width: 800px;
-            height: 600px; /* Fixed height */
+            height: 600px;
             background: #fff;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -42,8 +42,8 @@
             width: 100%;
             height: 100%;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            justify-content: center;
+            align-items: center;
         }
 
         .signin-signup, .signup-signup {
@@ -51,8 +51,8 @@
             width: 100%;
             height: 100%;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            justify-content: center;
+            align-items: center;
             padding: 2rem;
             transition: transform 0.6s ease-in-out;
             background: #fff;
@@ -65,13 +65,12 @@
         form {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center form elements */
+            align-items: center;
             width: 100%;
             max-width: 400px;
             padding: 2rem;
         }
 
-        /* Rest of the styles remain the same */
         h2 {
             color: #2c3e50;
             font-size: 2.5rem;
@@ -82,7 +81,7 @@
         .input-field {
             position: relative;
             margin-bottom: 25px;
-            width: 100%; /* Full width of form */
+            width: 100%;
         }
 
         .input-field i {
@@ -154,7 +153,6 @@
             width: 100%;
         }
 
-        /* Rest of the animations and media queries remain the same */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -188,7 +186,7 @@
     </style>
 </head>
 <body>
-    <!-- Rest of the HTML and JavaScript code remains the same -->
+
     <div class="container">
         <div class="form-container">
             <!-- Sign In Form -->
@@ -234,7 +232,6 @@
     </div>
 
     <script>
-        // Add floating particles
         document.addEventListener('DOMContentLoaded', function() {
             for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
@@ -258,7 +255,6 @@
                 : 'translateX(-100%)';
         }
 
-        // Handle form submissions
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);

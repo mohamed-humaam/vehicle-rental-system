@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../includes/config.php';  // Updated path
+require_once '../../includes/config.php';
 
 header('Content-Type: application/json');
 

@@ -1,6 +1,6 @@
-CREATE DATABASE vehicle_rental;
+CREATE DATABASE vehicle_rental_system;
 
-USE vehicle_rental;
+USE vehicle_rental_system;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,

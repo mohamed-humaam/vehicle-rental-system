@@ -12,9 +12,10 @@ CREATE TABLE users (
 
 CREATE TABLE vehicles (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    photo VARCHAR(255),
     name VARCHAR(100),
     type VARCHAR(50),
-    price_per_day DECIMAL(10, 2),
+    daily_price DECIMAL(10, 2),
     availability BOOLEAN DEFAULT 1
 );
 
@@ -32,7 +33,7 @@ CREATE TABLE bookings (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     total_amount DECIMAL(10, 2) NOT NULL,
-    status ENUM('booked', 'cancelled') DEFAULT 'booked',
+    status ENUM('pending', 'booked', 'cancelled') DEFAULT 'booked',
     FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
     FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
 );
